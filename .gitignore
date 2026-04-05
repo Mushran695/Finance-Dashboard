@@ -1,18 +1,26 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# =========================
+# Dependencies
+# =========================
+node_modules/
 
-# compiled output
-dist
-tmp
-out-tsc
+# =========================
+# Build outputs
+# =========================
+dist/
+tmp/
+out-tsc/
 *.tsbuildinfo
-.expo
-.expo-shared
 
-# dependencies
-node_modules
+# =========================
+# Expo (if used)
+# =========================
+.expo/
+.expo-shared/
 
-# IDEs and editors
-/.idea
+# =========================
+# IDEs and Editors
+# =========================
+.idea/
 .project
 .classpath
 .c9/
@@ -20,50 +28,80 @@ node_modules
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
+# VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+# =========================
+# Logs
+# =========================
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
 
+# =========================
+# Coverage
+# =========================
+coverage/
+
+# =========================
+# Misc
+# =========================
+.sass-cache/
+connect.lock
+libpeerconnection.log
+typings/
+
+# =========================
 # System Files
+# =========================
 .DS_Store
 Thumbs.db
 
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.*
+!.env.example
 
-
-# Local Replit and workspace artifacts
+# =========================
+# Replit / Local Workspace
+# =========================
 .local/
-/.replit
+.replit
 .replitignore
 
-# Lockfiles and package manager artifacts (choose your workspace manager)
-package-lock.json
-pnpm-lock.yaml
-pnpm-workspace.yaml
-
-# Backup and editor temp files
+# =========================
+# Temporary / Backup Files
+# =========================
 *.bak
+*.tmp
+*.temp
 
-# Backend artifacts to ignore
+# =========================
+# Vercel
+# =========================
+.vercel
+
+# =========================
+# Backend / Server Artifacts
+# =========================
 artifacts/api-server/
 .replit-artifact/
 artifact.toml
 build.mjs
-.vercel
 server.log
-logs/
 
+# =========================
+# IMPORTANT (DO NOT IGNORE)
+# =========================
+# Keep these files for Vercel & workspace stability:
+# package-lock.json
+# pnpm-lock.yaml
+# pnpm-workspace.yaml

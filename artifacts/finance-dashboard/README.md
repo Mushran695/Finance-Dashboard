@@ -1,83 +1,111 @@
 # FinanceIQ — Finance Dashboard
 
-A clean, interactive personal finance dashboard built with React + Vite and TypeScript.
+A clean, interactive personal finance dashboard built with **React + Vite + TypeScript**, designed to showcase frontend design, state management, and UX best practices using mock data.
 
-## Getting Started
-
-```bash
-pnpm install
-pnpm --filter @workspace/finance-dashboard run dev
-```
-
-Open `http://localhost:23522` in your browser.
+---
 
 ## Features
 
 ### Dashboard Overview
-- Summary cards: Total Balance, Total Income, and Total Expenses with month-over-month trends
-- Area chart showing monthly income vs. expenses over time
-- Donut chart showing spending breakdown by category
-- Recent transactions list with quick "View all" navigation
+
+* Summary cards: Total Balance, Income, and Expenses with month-over-month trends
+* Area chart showing monthly income vs. expenses
+* Donut chart showing spending breakdown by category
+* Recent transactions list with "View all" option
 
 ### Transactions
-- Full transaction list with date, description, merchant, category, type badge, and amount
-- **Search** by description, category, or merchant
-- **Filter** by month, transaction type (income/expense), and category
-- **Sort** by any column (date, description, category, amount) — ascending or descending
-- **Export to CSV** — download filtered transactions as a CSV file
-- Admin: Add, edit, and delete transactions via a validated form
+
+* Full transaction list with Date, Description, Merchant, Category, Type, and Amount
+* **Search**, **filter**, and **sort** by any column
+* Admin role can **add, edit, and delete** transactions
+* Export filtered transactions to CSV
 
 ### Insights
-- Key insight cards: highest spending category, savings rate, worst/best month
-- Monthly income vs. expenses bar chart comparison
-- Category spending breakdown with proportional bars and percentages
-- Radar chart showing spending patterns across top 6 categories
-- Smart contextual observations: low savings warnings, category highlights, monthly averages
+
+* Cards showing highest spending category, savings rate, and monthly comparisons
+* Bar chart: Monthly income vs expenses
+* Radar chart: Spending patterns across top categories
+* Smart observations: Low savings warnings, category highlights, monthly averages
 
 ### Role-Based UI
-Switch roles from the sidebar at any time:
-- **Viewer**: Read-only — browse and explore all data, export CSV
-- **Admin**: Full access — add, edit, and delete transactions
+
+* **Viewer:** Read-only access
+* **Admin:** Full CRUD on transactions
+* Role can be toggled from the sidebar
 
 ### Additional Features
-- **Dark mode** — persisted to localStorage, toggle from the sidebar
-- **Data persistence** — all transactions stored in localStorage so data survives page refreshes
-- **Responsive design** — mobile sidebar with overlay, responsive grid layouts
-- **State management** — React Context with useReducer-like pattern for role, theme, filters, and transactions
+
+* **Dark mode** (persisted via `localStorage`)
+* **Responsive design** for mobile, tablet, and desktop
+* State managed via **React Context + reducer pattern**
+* Data persistence in `localStorage`
+
+---
 
 ## Tech Stack
 
-- **Framework**: React 18 + Vite
-- **Routing**: Wouter
-- **Styling**: Tailwind CSS v4 with CSS custom properties
-- **Charts**: Recharts (AreaChart, BarChart, PieChart, RadarChart)
-- **Forms**: React Hook Form + Zod validation
-- **Components**: shadcn/ui (Radix UI primitives)
-- **State**: React Context API
-- **Persistence**: localStorage
+* **Frontend:** React 18 + Vite + TypeScript
+* **Styling:** Tailwind CSS
+* **Charts:** Recharts (Area, Bar, Pie, Radar)
+* **Forms:** React Hook Form + Zod
+* **Routing:** Router
+* **UI Components:** shadcn/ui (Radix primitives)
 
-## Project Structure
+---
 
-```
-src/
-├── context/
-│   └── AppContext.tsx      # Global state: role, theme, transactions, filters
-├── components/
-│   ├── Layout.tsx           # Sidebar navigation, mobile nav, theme/role controls
-│   ├── SummaryCard.tsx      # Reusable summary metric card
-│   └── TransactionForm.tsx  # Add/Edit transaction form (Admin only)
-├── pages/
-│   ├── Dashboard.tsx        # Overview: cards, charts, recent transactions
-│   ├── Transactions.tsx     # Full list with filters, sort, CRUD
-│   └── Insights.tsx         # Analytics: comparisons, patterns, observations
-├── lib/
-│   ├── mockData.ts          # 47 realistic mock transactions + helpers
-│   └── utils.ts             # Formatting utilities
-└── index.css                # Theme tokens (light + dark)
+## Getting Started
+
+```bash
+npm install
+npm run dev
 ```
 
-## Mock Data
+Open the URL printed by Vite in your browser (e.g., `http://localhost:5173`).
 
-47 pre-loaded transactions from January–April 2026 covering:
-- Income: Salary, Freelance, Investment dividends
-- Expenses: Housing, Food & Dining, Shopping, Transportation, Subscriptions, Healthcare, Entertainment, Utilities, Education, Travel
+---
+
+## Project Structure (High-Level)
+
+```text
+artifacts/finance-dashboard/
+├── src/
+│   ├── context/AppContext.tsx        # global state + reducer
+│   ├── pages/Dashboard.tsx           # overview page
+│   ├── pages/Transactions.tsx        # transaction list + filters
+│   ├── pages/Insights.tsx            # analytics & insights
+│   ├── components/                   # UI components (SummaryCard, TransactionRow, Forms)
+│   └── lib/mockData.ts               # mock transactions and helpers
+├── vite.config.ts
+└── package.json
+```
+
+---
+
+## State & Data
+
+* Transactions, filters, selected role, and theme stored in Context
+* Data persisted to `localStorage` to survive page reloads
+* UI dynamically adapts based on selected role
+
+---
+
+## Extending the Project
+
+* Replace mock data with real API calls
+* Add authentication and server-side role enforcement
+* Persist data to backend database and enhance CSV export
+
+---
+
+## Evaluation Highlights
+
+* **Design & Clarity:** Clean layout, readable typography, clear visual hierarchy
+* **Responsiveness:** Works across mobile, tablet, and desktop
+* **Functionality:** Filtering, sorting, CSV export, role-based access
+* **Technical Quality:** Modular components, reusable state logic, clear Context API usage
+
+---
+
+## License
+
+MIT

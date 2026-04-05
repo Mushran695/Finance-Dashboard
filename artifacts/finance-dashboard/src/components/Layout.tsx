@@ -59,7 +59,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-white" />
           </div>
-          <span className="font-semibold text-sidebar-foreground tracking-tight">FinanceIQ</span>
+          <span className="font-semibold text-sidebar-foreground tracking-tight">Finance Dashboard</span>
           <button
             className="ml-auto lg:hidden text-sidebar-foreground/60 hover:text-sidebar-foreground"
             onClick={() => setSidebarOpen(false)}

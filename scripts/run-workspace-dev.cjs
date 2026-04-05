@@ -5,9 +5,11 @@ const { spawnSync } = require('child_process');
 
 function scan(dir, depth) {
   if (depth < 0) return [];
+  const IGNORES = new Set(['node_modules', '.git', 'artifacts', 'dist', 'out', '.cache']);
   let res = [];
   try {
     for (const f of fs.readdirSync(dir)) {
+      if (IGNORES.has(f)) continue;
       const p = path.join(dir, f);
       try {
         if (fs.statSync(p).isDirectory()) {

@@ -7,7 +7,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "echo \"skip build for api-client-react\""
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.21"

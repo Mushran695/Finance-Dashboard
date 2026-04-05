@@ -6,7 +6,7 @@
     "build": "npm run typecheck && npm run build --workspaces",
     "typecheck:libs": "tsc --build",
     "typecheck": "npm run typecheck:libs && npm run typecheck --workspaces",
-    "dev": "PORT=5173 BASE_PATH=/ node scripts/run-workspace-dev.js"
+    "dev": "PORT=5173 BASE_PATH=/ node scripts/run-workspace-dev.cjs"
   },
   "workspaces": [
     

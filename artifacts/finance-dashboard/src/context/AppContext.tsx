@@ -54,9 +54,39 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return (localStorage.getItem("finance_theme") as Theme) || "light";
   });
 
+  // Safely load stored transactions, falling back to mock data on failure
+  const getStoredTransactions = (): Transaction[] => {
+    try {
+      if (typeof window === "undefined" || !window.localStorage) return [];
+      const stored = localStorage.getItem("finance_dashboard_transactions");
+      if (!stored) return getInitialTransactions();
+      try {
+        const parsed = JSON.parse(stored) as Transaction[];
+        return Array.isArray(parsed) ? parsed : getInitialTransactions();
+      } catch {
+        return getInitialTransactions();
+      }
+    } catch {
+      try {
+        return getInitialTransactions();
+      } catch {
+        return [];
+      }
+    }
+  };
+
   const [transactions, setTransactions] = useState<Transaction[]>(() =>
-    getInitialTransactions()
+    getStoredTransactions()
   );
+
+  // Ensure client always has initial data on first mount (handles SSR/hydration)
+  useEffect(() => {
+    if (!transactions || transactions.length === 0) {
+      const t = getStoredTransactions();
+      if (t && t.length) setTransactions(t);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [filterCategory, setFilterCategory] = useState<TransactionCategory | "all">("all");
   const [filterType, setFilterType] = useState<TransactionType | "all">("all");

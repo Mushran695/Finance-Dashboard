@@ -10,7 +10,6 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "echo \"skip build for api-zod\""
   },
-  },
   "dependencies": {
     "zod": "^3.25.76"
   }

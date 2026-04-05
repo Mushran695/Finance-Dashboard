@@ -58,3 +58,12 @@ pnpm-workspace.yaml
 # Backup and editor temp files
 *.bak
 
+# Backend artifacts to ignore
+artifacts/api-server/
+.replit-artifact/
+artifact.toml
+build.mjs
+.vercel
+server.log
+logs/
+

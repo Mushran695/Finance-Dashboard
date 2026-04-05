@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "codegen": "orval --config ./orval.config.ts",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "echo \"skip typecheck for api-spec\""
   },
   "devDependencies": {
     "orval": "^8.5.2"

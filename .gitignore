@@ -50,6 +50,9 @@ Thumbs.db
 /.replit
 .replitignore
 
+# Monorepo build artifacts directory (removed from repo)
+artifacts/
+
 # Lockfiles and package manager artifacts (choose your workspace manager)
 package-lock.json
 pnpm-lock.yaml

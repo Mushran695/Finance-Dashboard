@@ -9,7 +9,7 @@
     "dev": "PORT=5173 BASE_PATH=/ npm -w @workspace/finance-dashboard run dev"
   },
   "workspaces": [
-    "artifacts/*",
+    
     "lib/*",
     "lib/integrations/*",
     "scripts"

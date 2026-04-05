@@ -44,3 +44,17 @@ Thumbs.db
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
+
+# Local Replit and workspace artifacts
+.local/
+/.replit
+.replitignore
+
+# Lockfiles and package manager artifacts (choose your workspace manager)
+package-lock.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
+# Backup and editor temp files
+*.bak
+

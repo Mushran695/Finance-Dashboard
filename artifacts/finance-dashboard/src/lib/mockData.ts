@@ -126,15 +126,21 @@ const INITIAL_TRANSACTIONS: Transaction[] = [
 ];
 
 export const getInitialTransactions = (): Transaction[] => {
-  const stored = localStorage.getItem("finance_dashboard_transactions");
-  if (stored) {
-    try {
-      return JSON.parse(stored) as Transaction[];
-    } catch {
-      return INITIAL_TRANSACTIONS;
+  try {
+    if (typeof window === "undefined" || !window.localStorage) {
+      return INITIAL_TRANSACTIONS; // ✅ SSR safe
     }
+
+    const stored = window.localStorage.getItem("finance_dashboard_transactions");
+
+    if (!stored) return INITIAL_TRANSACTIONS;
+
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) ? parsed : INITIAL_TRANSACTIONS;
+
+  } catch {
+    return INITIAL_TRANSACTIONS; // ✅ NEVER break UI
   }
-  return INITIAL_TRANSACTIONS;
 };
 
 export const saveTransactions = (transactions: Transaction[]): void => {

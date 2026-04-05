@@ -47,17 +47,21 @@ const AppContext = createContext<AppContextValue | null>(null);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [role, setRoleState] = useState<Role>(() => {
-    return (localStorage.getItem("finance_role") as Role) || "viewer";
-  });
+  if (typeof window === "undefined") return "viewer";
+  return (localStorage.getItem("finance_role") as Role) || "viewer";
+});
 
   const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem("finance_theme") as Theme) || "light";
-  });
+  if (typeof window === "undefined") return "light";
+  return (localStorage.getItem("finance_theme") as Theme) || "light";
+});
 
   // Safely load stored transactions, falling back to mock data on failure
   const getStoredTransactions = (): Transaction[] => {
     try {
-      if (typeof window === "undefined" || !window.localStorage) return [];
+      if (typeof window === "undefined" || !window.localStorage) {
+  return getInitialTransactions(); // ✅ NEVER return empty
+    }
       const stored = localStorage.getItem("finance_dashboard_transactions");
       if (!stored) return getInitialTransactions();
       try {

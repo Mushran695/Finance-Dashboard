@@ -3,41 +3,36 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
-// Provide safe defaults so `vite build` can run without environment variables
-const rawPort = process.env.PORT ?? "5173";
-const port = Number(rawPort) || 5173;
-const basePath = process.env.BASE_PATH ?? "/";
-
 export default defineConfig({
-  base: basePath,
+  base: "./", // ✅ Fix for Vercel 404 issue
+
   plugins: [
     react(),
     tailwindcss(),
   ],
+
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "src"),
-      "@assets": path.resolve(import.meta.dirname, "..", "..", "attached_assets"),
+      "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve(__dirname, "..", "..", "attached_assets"),
     },
     dedupe: ["react", "react-dom"],
   },
-  root: path.resolve(import.meta.dirname),
+
+  root: __dirname,
+
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: "dist", // ✅ IMPORTANT: Vercel expects this
     emptyOutDir: true,
   },
+
   server: {
-    port,
+    port: 5173,
     host: "0.0.0.0",
-    allowedHosts: true,
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
-    },
   },
+
   preview: {
-    port,
+    port: 5173,
     host: "0.0.0.0",
-    allowedHosts: true,
   },
 });

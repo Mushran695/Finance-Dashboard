@@ -25,11 +25,18 @@ function Router() {
 }
 
 function App() {
+  // Normalize Vite's BASE_URL for Wouter.
+  // Vite may set BASE_URL to './' for relative builds which becomes '.' after trimming
+  // — Wouter expects an empty string or a path beginning with '/'. Passing '.' breaks routing.
+  const rawBase = import.meta.env.BASE_URL || "/";
+  const cleaned = rawBase.replace(/\/$/, "");
+  const base = cleaned === "." || cleaned === "./" ? "" : cleaned;
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AppProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <WouterRouter base={base}>
             <Router />
           </WouterRouter>
           <Toaster />
